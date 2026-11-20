@@ -4,32 +4,32 @@
 [![rank](https://make.fun/badge/gta6-cover-art-01/adhityanaufal26/gta6-cover-art-01/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 [![reward](https://make.fun/badge/gta6-cover-art-01/adhityanaufal26/gta6-cover-art-01/reward.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 
-An offline web app that turns your own photos and a caption into GTA 6-style multi-panel cover art — Vice City sunset and neon grades, bold poster lettering — exported as a PNG to share. Built for the make.fun bounty [Make GTA 6 Cover Art](https://make.fun/bounty/gta6-cover-art-01). Everything is original: no Rockstar Games logo, artwork, or fonts.
+Neon Palm Cover Studio is a standalone browser tool for building a multi-panel game-cover style poster from photos you pick on your own machine. You drop in images, add a title and caption, choose a layout and a sunset/neon colour treatment, and export a ready-to-share PNG. It was built for the make.fun bounty [Make GTA 6 Cover Art](https://make.fun/bounty/gta6-cover-art-01) and uses an original visual design throughout — no Rockstar Games artwork, logos, or fonts are included.
 
-## What it is
+## Features
 
-- **Six layouts**: nine-panel grid with title block, four-panel grid, hero-and-three, full-bleed, tilted snapshots, and strip collage.
-- **Five colour grades**: Vice Sunset, Neon Night, Twilight Gold, Teal Heat, and Mono Ink — gradient-map grades with grain, vignette, and halftone options.
-- **Any photo**: load your own photos from disk (file picker or drag-and-drop, several at once), crop and position each panel by dragging and zooming, fill several panels from one photo or many, and edit the title, neon-script subtitle, tagline, and per-panel callouts.
-- **Poster lettering**: sunset-gradient condensed title with ink stroke, glowing script subtitle, Palm Coast seal, heat-meter stars, and a billing block.
-- **Fast export**: PNG in 1080×1080, 1080×1350, 1920×1080, and 1080×1920, one click per size or all at once, with undo/redo while you edit.
-- Works fully offline from static files under `app/` — no build step, no network requests; photos are read on your machine and never uploaded.
+- Six layout templates to choose from: a nine-panel grid with a title block, a four-panel grid, a hero image with three supporting panels, a full-bleed single image, tilted snapshots, and a strip collage.
+- Five colour grades inspired by tropical sunset and neon signage: Vice Sunset, Neon Night, Twilight Gold, Teal Heat, and Mono Ink. Each grade is a gradient-map treatment you can combine with grain, vignette, and halftone effects.
+- Bring your own photos via the file picker or drag-and-drop, loading several at once if you like. Every panel supports individual crop and positioning — drag to reframe, zoom to tighten the shot — and a single photo can fill multiple panels.
+- Fully editable text: main title, neon-script subtitle, tagline, and per-panel callouts, all styled with bold poster lettering, a sunset-gradient condensed title with ink stroke, a glowing script accent, a Palm Coast seal, heat-meter stars, and a billing block.
+- One-click PNG export in four sizes: 1080x1080, 1080x1350, 1920x1080, and 1080x1920, either individually or all at once. Undo and redo are available while editing.
+- Runs entirely offline from the static files in `app/`. There is no build step and no network access — photos are read locally and never leave your computer. Two sample photos load by default so you see a finished cover immediately.
 
-## How to run
+## Run it locally
 
 ```bash
 node serve.ts
 ```
 
-Then open the printed local address in a desktop browser. Any static file server pointed at `app/` works the same way. Two sample photos are preloaded so a cover is on screen at first open.
+Open the local address it prints in a desktop browser. Pointing any static file server at `app/` works just as well.
 
-## Handing in
+## Build the submission bundle
 
 ```bash
 mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 ```
 
-`main.ts` (Node 22, standard library only) copies `app/` and `screenshots/` to the output directory and writes `dossier.json` with the kit's `buildDossier`.
+`main.ts` runs on Node 22 using only the standard library. It copies `app/` and `screenshots/` into the output directory and generates `dossier.json` via the kit's `buildDossier`.
 
 ## License
 
