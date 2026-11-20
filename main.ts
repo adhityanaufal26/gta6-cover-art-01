@@ -10,6 +10,9 @@
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+//
+// This entry ships Neon Palm Cover Studio: a multi-panel poster maker with six layouts,
+// five sunset/neon grades, per-panel crop and PNG export in four post sizes.
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';

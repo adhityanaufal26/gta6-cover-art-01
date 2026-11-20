@@ -1,23 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
-<link rel="stylesheet" href="./style.css">
+<title>Neon Palm Cover Studio - multi-panel poster maker</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
+<header id="appHeader">
+  <div class="brand">
+    <span class="brand-mark">NEON PALM</span>
+    <span class="brand-sub">Cover Studio - multi-panel poster maker</span>
+  </div>
+  <div class="header-actions">
+    <button type="button" id="undoBtn" class="ghost-btn">Undo</button>
+    <button type="button" id="redoBtn" class="ghost-btn">Redo</button>
+    <button type="button" id="exportAllBtn" class="ghost-btn">Export all 4 sizes</button>
+    <button type="button" id="exportBtn" class="primary-btn">Export PNG</button>
+  </div>
+</header>
+
+<main id="appMain">
+  <section id="previewColumn">
+    <div id="previewWrap">
+      <canvas id="coverCanvas" width="1080" height="608"></canvas>
+    </div>
+    <div class="preview-meta">
+      <span id="sizeReadout">1920 x 1080 PNG</span>
+      <span class="hint">Click a panel, drag to crop, scroll to zoom. Drop photos anywhere here.</span>
+    </div>
+    <p id="statusLine" role="status"></p>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+
+  <aside id="controlColumn">
+    <section class="control-card" id="photoCard">
+      <h2>1. Photos</h2>
+      <label class="upload-btn" for="fileInput">Add your photos</label>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+      <p class="card-note"><span id="photoCount">Loading samples...</span> - photos stay on this machine, nothing is uploaded.</p>
+      <div id="photoThumbs"></div>
+      <button type="button" id="fillBtn" class="ghost-btn wide">Fill every panel from photos</button>
+    </section>
+
+    <section class="control-card" id="layoutCard">
+      <h2>2. Layout</h2>
+      <div id="layoutPicker" class="picker"></div>
+      <h3>Post size</h3>
+      <div id="sizePicker" class="picker"></div>
+    </section>
+
+    <section class="control-card" id="gradeCard">
+      <h2>3. Grade</h2>
+      <div id="gradePicker" class="picker"></div>
+      <div class="toggle-grid">
+        <label><input type="checkbox" id="grainToggle" checked> Film grain</label>
+        <label><input type="checkbox" id="vignetteToggle" checked> Vignette</label>
+        <label><input type="checkbox" id="halftoneToggle" checked> Halftone band</label>
+        <label><input type="checkbox" id="sealToggle" checked> Palm Coast seal</label>
+      </div>
+      <label class="slider-label" for="starsRange">Heat-meter stars</label>
+      <input type="range" id="starsRange" min="0" max="5" step="1" value="5">
+    </section>
+
+    <section class="control-card" id="panelCard">
+      <h2>4. Panel crop</h2>
+      <div class="panel-nav">
+        <button type="button" id="prevPanelBtn" class="ghost-btn">Prev</button>
+        <span id="panelLabel">Panel 1 of 9</span>
+        <button type="button" id="nextPanelBtn" class="ghost-btn">Next</button>
+      </div>
+      <label class="slider-label" for="zoomRange">Zoom</label>
+      <input type="range" id="zoomRange" min="1" max="3.2" step="0.01" value="1">
+      <label class="slider-label" for="rotRange">Tilt (degrees)</label>
+      <input type="range" id="rotRange" min="-14" max="14" step="0.5" value="0">
+      <label class="field-label" for="calloutInput">Panel callout label</label>
+      <input type="text" id="calloutInput" maxlength="24" placeholder="e.g. GOLDEN HOUR">
+      <p class="card-note">Drag on the cover to reposition the selected panel. Click a thumbnail above to swap its photo.</p>
+    </section>
+
+    <section class="control-card" id="letteringCard">
+      <h2>5. Lettering</h2>
+      <label class="field-label" for="titleInput">Title</label>
+      <input type="text" id="titleInput" maxlength="28" value="NEON PALM">
+      <label class="field-label" for="subtitleInput">Neon script subtitle</label>
+      <input type="text" id="subtitleInput" maxlength="40" value="Vice nights forever">
+      <label class="field-label" for="taglineInput">Tagline</label>
+      <input type="text" id="taglineInput" maxlength="60" value="ONE CITY - NO BRAKES - ALL SUNSET">
+      <label class="field-label" for="billingInput">Billing block credits</label>
+      <input type="text" id="billingInput" maxlength="90" value="A PALM COAST POSTER - SHOT ON YOUR PHONE - PRINTED IN NEON - EST. 2026">
+    </section>
+  </aside>
 </main>
-<script type="module" src="./src/main.js"></script>
+
+<footer id="appFooter">
+  <span>Neon Palm Cover Studio - original poster art from your own photos. Works fully offline; export in 1080x1080, 1080x1350, 1920x1080 and 1080x1920.</span>
+</footer>
+
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
